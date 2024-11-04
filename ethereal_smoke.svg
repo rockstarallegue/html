@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <!-- Wispy smoke effect -->
+    <filter id="wisps">
+      <feTurbulence type="fractalNoise" baseFrequency="0.008" numOctaves="5" seed="2" result="noise">
+        <animate attributeName="baseFrequency"
+          dur="20s" values="0.008;0.012;0.008"
+          repeatCount="indefinite"/>
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="30" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+
+    <!-- Bright golden glow -->
+    <filter id="goldenGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur1">
+        <animate attributeName="stdDeviation"
+          values="3;4;3"
+          dur="2s"
+          repeatCount="indefinite"/>
+      </feGaussianBlur>
+      <feFlood flood-color="#ffd700" flood-opacity="0.8" result="gold">
+        <animate attributeName="flood-opacity"
+          values="0.8;0.6;0.8"
+          dur="1.5s"
+          repeatCount="indefinite"/>
+      </feFlood>
+      <feComposite in="gold" in2="blur1" operator="in" result="goldGlow"/>
+      
+      <!-- Bright white core -->
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1" result="blur2"/>
+      <feFlood flood-color="#ffffff" flood-opacity="0.9" result="core"/>
+      <feComposite in="core" in2="blur2" operator="in" result="whiteGlow"/>
+      
+      <feMerge>
+        <feMergeNode in="goldGlow"/>
+        <feMergeNode in="whiteGlow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Sparks -->
+    <filter id="spark" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="0.5"/>
+      <feColorMatrix type="matrix"
+        values="1 0 0 0 1   0 1 0 0 1   0 0 1 0 1  0 0 0 3 -1"/>
+    </filter>
+  </defs>
+
+  <!-- Base smoky layer -->
+  <g opacity="0.7" filter="url(#wisps)">
+    <rect x="50" y="50" width="300" height="200" fill="url(#smokeGrad)" filter="url(#goldenGlow)">
+      <animate attributeName="opacity"
+        values="0.7;0.5;0.7"
+        dur="3s"
+        repeatCount="indefinite"/>
+    </rect>
+  </g>
+
+  <!-- Gradient for smoke -->
+  <linearGradient id="smokeGrad" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.1"/>
+    <stop offset="50%" stop-color="#ffd700" stop-opacity="0.05"/>
+    <stop offset="100%" stop-color="#ffffff" stop-opacity="0.1"/>
+  </linearGradient>
+
+  <!-- Animated sparks -->
+  <g>
+    <!-- Generate multiple sparks with different animations -->
+    <circle class="spark" r="1" filter="url(#spark)" fill="#ffffff">
+      <animate attributeName="cx" values="100;300;100" dur="4s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="100;200;100" dur="4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="1;0;1" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    
+    <circle class="spark" r="0.8" filter="url(#spark)" fill="#ffd700">
+      <animate attributeName="cx" values="200;150;200" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="150;100;150" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="1;0;1" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    
+    <circle class="spark" r="1.2" filter="url(#spark)" fill="#ffffff">
+      <animate attributeName="cx" values="250;150;250" dur="5s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="180;120;180" dur="5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="1;0;1" dur="5s" repeatCount="indefinite"/>
+    </circle>
+
+    <circle class="spark" r="0.6" filter="url(#spark)" fill="#fffacd">
+      <animate attributeName="cx" values="150;280;150" dur="6s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="200;150;200" dur="6s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="1;0;1" dur="6s" repeatCount="indefinite"/>
+    </circle>
+
+    <circle class="spark" r="0.9" filter="url(#spark)" fill="#ffffff">
+      <animate attributeName="cx" values="280;120;280" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="160;190;160" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="1;0;1" dur="7s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+</svg>

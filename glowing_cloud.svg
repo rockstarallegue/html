@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <defs>
+    <!-- Glowing edge filter -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur" />
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 1   0 1 0 0 1   0 0 1 0 1  0 0 0 0.8 0" />
+    </filter>
+    
+    <!-- Cloud texture gradient -->
+    <radialGradient id="cloudGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" style="stop-color:#fff3e0;stop-opacity:0.9" />
+      <stop offset="70%" style="stop-color:#fff3e0;stop-opacity:0.5" />
+      <stop offset="100%" style="stop-color:#fff3e0;stop-opacity:0.1" />
+    </radialGradient>
+    
+    <!-- Edge glow gradient -->
+    <radialGradient id="edgeGlow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" style="stop-color:#ffd700;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#fff3e0;stop-opacity:0" />
+    </radialGradient>
+
+    <!-- Animation path -->
+    <path id="floatPath" d="M10,0 Q 15,-5 20,0 T 30,0 T 40,0 T 50,0" />
+  </defs>
+
+  <!-- Background glow -->
+  <circle cx="400" cy="200" r="150" fill="url(#edgeGlow)" filter="url(#glow)">
+    <animate attributeName="r" 
+             values="150;160;150" 
+             dur="4s" 
+             repeatCount="indefinite" />
+  </circle>
+
+  <!-- Main cloud shape with smooth edges -->
+  <g transform="translate(250 100)">
+    <!-- Multiple overlapping shapes to create cloud texture -->
+    <circle cx="150" cy="100" r="60" fill="url(#cloudGradient)" opacity="0.7">
+      <animate attributeName="r"
+               values="60;65;60"
+               dur="3s"
+               repeatCount="indefinite" />
+    </circle>
+    
+    <circle cx="200" cy="100" r="70" fill="url(#cloudGradient)" opacity="0.8">
+      <animate attributeName="r"
+               values="70;75;70"
+               dur="4s"
+               repeatCount="indefinite" />
+    </circle>
+    
+    <circle cx="250" cy="100" r="65" fill="url(#cloudGradient)" opacity="0.7">
+      <animate attributeName="r"
+               values="65;70;65"
+               dur="3.5s"
+               repeatCount="indefinite" />
+    </circle>
+
+    <!-- Edge glow elements -->
+    <circle cx="150" cy="100" r="65" fill="url(#edgeGlow)" filter="url(#glow)">
+      <animate attributeName="r"
+               values="65;70;65"
+               dur="3s"
+               repeatCount="indefinite" />
+    </circle>
+    
+    <circle cx="200" cy="100" r="75" fill="url(#edgeGlow)" filter="url(#glow)">
+      <animate attributeName="r"
+               values="75;80;75"
+               dur="4s"
+               repeatCount="indefinite" />
+    </circle>
+    
+    <circle cx="250" cy="100" r="70" fill="url(#edgeGlow)" filter="url(#glow)">
+      <animate attributeName="r"
+               values="70;75;70"
+               dur="3.5s"
+               repeatCount="indefinite" />
+    </circle>
+
+    <!-- Subtle floating animation for the entire cloud -->
+    <animateTransform
+      attributeName="transform"
+      type="translate"
+      values="0,0; 0,-10; 0,0"
+      dur="6s"
+      repeatCount="indefinite" />
+  </g>
+</svg>
