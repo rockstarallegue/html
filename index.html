@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+  <title>Pathos Cloud</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="author" content="Allegue">
+  <meta name="description" content="pathos.cloud landing page">
+
+  <meta property="og:title" content="pathos.cloud">
+  <meta property="og:description" content="digital knowledge crafting tool">
+  <meta property="og:image" content="logo.png">
+  <meta property="og:url" content="index.html">
+  <meta property="og:site_name" content="Pathos Cloud">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
   <style>
     * {
       margin: 0;
@@ -10,11 +24,9 @@
 
     body {
       background-image: url(noise.svg);
-      color: #FFF3E0;
       font-family: 'Courier New', monospace;
       overflow-x: hidden;
     }
-
     section {
       min-height: 100vh;
       width: 100%;
@@ -22,43 +34,24 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 2rem;
       text-align: center;
     }
-
-    @font-face {
-      font-family: nasalization;
-      src: url(nasalization.otf);
-    }
-
-    .hero{
-      height: 80vh;
-    }
-
-    .box{
-      font-family: nasalization;
-      font-size: 5rem;
-    }
-
     .glass{
-      background-color: rgb(255, 243, 224, 0.1);
+      width: 100%;
+      height: 100%;
+      background-color: rgb(255, 243, 224, 0.08);
+    }
+    .full{
       width: 100%;
       height: 100%;
     }
-
-    .logo {
-      width: 150px;
-      height: 150px;
-      margin-bottom: 2rem;
-      animation: float 6s ease-in-out infinite;
+    .container {
+      display: flex;
+      flex-direction: column;
     }
-
-    .image-container {
-      position: relative;
-      width: 20rem;
-      height: 23rem;
+    .child {
+      flex-grow: 1;
     }
-
     .circular-image {
       width: 100%;
       height: 100%;
@@ -67,7 +60,14 @@
       position: relative;
       z-index: 1;
     }
-
+    .bouncing {
+      animation: float 6s ease-in-out infinite;
+    }
+    .image-container {
+      position: relative;
+      width: 21rem;
+      height: 20rem;
+    }
     .glow-frame {
       position: absolute;
       top: -10px;
@@ -127,289 +127,42 @@
       );
       animation: rotateGlow 4s linear infinite;
     }
-
-    .cta-button {
-        background-color: transparent;
-        color: #D2FAE3;
-        border: 2px solid #D2FAE3;
-        padding: 1rem 2rem;
-        font-size: 1.2rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        text-decoration: none;
-        display: inline-block;
-        margin: 1rem 0;
-    }
-
-    .cta-button:hover {
-        background-color: #D2FAE3;
-        color: #33312D;
-    }
-
-    .info-card {
-        background-color: rgba(255, 255, 255, 0.05);
-        padding: 2rem;
-        border-radius: 8px;
-        margin: 2rem auto;
-        max-width: 800px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .info-card img {
-        width: 100%;
-        max-width: 400px;
-        height: auto;
-        margin: 2rem auto;
-        border: 2px solid #FFF3E0;
-    }
-
-    .info-card p {
-        margin-bottom: 1.5rem;
-        font-size: 1.1rem;
-        color: #FFF3E0;
-    }
-
-    footer {
-        background-color: rgba(0, 0, 0, 0.2);
-        padding: 3rem 2rem;
-        text-align: center;
-    }
-
-    .footer-content {
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .footer-column {
-        margin: 1rem;
-        min-width: 250px;
-    }
-
-    .footer-column h3 {
-        color: #D2FAE3;
-        margin-bottom: 1rem;
-    }
-
-    .footer-column p {
-        color: #FFF3E0;
-        font-size: 0.9rem;
-    }
-
-    /* Button Wrapper for Frame Effects */
-    .button-wrapper {
-        position: relative;
-        display: inline-block;
-        margin: 2rem;
-        padding: 8px;
-    }
-
-    /* Refined Starlight Frame Effect */
-    .button-wrapper::before,
-    .button-wrapper::after {
-        content: '';
-        position: absolute;
-        inset: -4px;
-        background: linear-gradient(
-            45deg,
-            #f5e4d0,
-            #fff3e0,
-            #f4fac1,
-            #d2fae3,
-            #f5e4d0
-        );
-        background-size: 400% 400%;
-        animation: gradientBorder 12s linear infinite;
-        z-index: -1;
-        border-radius: 4px;
-    }
-
-    .button-wrapper::after {
-        filter: blur(12px);
-        opacity: 0.7;
-        animation: gradientBorder 12s linear infinite reverse;
-    }
-
-    /* Refined Twinkling Stars */
-    .button-wrapper .stars {
-        position: absolute;
-        inset: -8px;
-        overflow: hidden;
-        z-index: -1;
-    }
-
-    .button-wrapper .stars::before {
-        content: '';
-        position: absolute;
-        width: 200%;
-        height: 200%;
-        background: 
-            radial-gradient(
-                circle at 50% 50%,
-                #fff3e0 0%,
-                rgba(244, 250, 193, 0.2) 2%,
-                transparent 4%
-            ),
-            radial-gradient(
-                circle at 30% 70%,
-                #f4fac1 0%,
-                rgba(210, 250, 227, 0.2) 2%,
-                transparent 4%
-            ),
-            radial-gradient(
-                circle at 70% 30%,
-                #d2fae3 0%,
-                rgba(255, 243, 224, 0.2) 2%,
-                transparent 4%
-            );
-        background-size: 100px 100px;
-        animation: twinkle 4s ease-in-out infinite;
-    }
-
-    /* Twinkling Button */
-    .cosmic-button {
-        background-color: transparent;
-        font-family: nasalization;
-        padding: 1rem 2rem;
-        font-size: 1.2rem;
-        cursor: pointer;
-        letter-spacing: 0.1em;
-        text-decoration: none;
-        display: inline-block;
-        position: relative;
-        border: none;
-        overflow: hidden;
-        transition: all 0.5s ease;
-        z-index: 1;
-    }
-
-    /* Refined Button Style */
-    .cosmic-button.twinkle {
-        background: transparent;
-        border: 2px solid transparent;
-        padding: 1rem 2rem;
-        font-size: 1.2rem;
-        cursor: pointer;
-        letter-spacing: 0.1em;
-        position: relative;
-        background-image: linear-gradient(
-            45deg,
-            #f5e4d0,
-            #fff3e0,
-            #f4fac1,
-            #d2fae3
-        );
-        background-size: 200% 200%;
-        animation: gradientShift 8s ease infinite;
-    }
-
-    .cosmic-button.twinkle::before {
-        content: '';
-        position: absolute;
-        top: -2px;
-        left: -2px;
-        right: -2px;
-        bottom: -2px;
-        background: linear-gradient(
-            45deg,
-            #f5e4d0,
-            #fff3e0,
-            #f4fac1,
-            #d2fae3
-        );
-        background-size: 200% 200%;
-        animation: gradientShift 4s ease infinite;
-        z-index: -1;
-        filter: blur(10px);
-    }
-
-    /* Dark Sparkling Text Effect */
-    .cosmic-button.twinkle span {
-        background: linear-gradient(
-            90deg,
-            #2c2c2c,  /* Darker gray */
-            #404040,  /* Medium gray */
-            #2c2c2c   /* Back to darker gray */
-        );
-        background-size: 200% auto;
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: sparkle 2s linear infinite;
-        font-weight: 600;  /* Making text slightly bolder */
-        text-shadow: 0 0 2px rgba(255, 255, 255, 0.1);  /* Subtle glow */
-    }
-
-    /* Hover Effects */
-    .cosmic-button:hover {
-        transform: translateY(-3px);
-        box-shadow: 
-            0 0 20px rgba(255, 250, 182, 0.5),
-            0 0 40px rgba(210, 250, 227, 0.3),
-            0 0 60px rgba(255, 190, 182, 0.2);
-    }
-
-    /* Animations */
-    @keyframes gradientShift {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-
-    @keyframes sparkle {
-        to { background-position: 200% center; }
-    }
-
-    @keyframes gradientBorder {
-        0% { background-position: 0% 50%; }
-        100% { background-position: 400% 50%; }
-    }
-
-    @keyframes twinkle {
-        0%, 100% { 
-            transform: scale(1) rotate(0deg); 
-            opacity: 0.5;
-        }
-        50% { 
-            transform: scale(1.2) rotate(180deg); 
-            opacity: 0.8;
-        }
-    }
-
-    .button-group {
-        text-align: center;
-        margin: 1rem;
-    }
-
-    .hero{
+    .planet{
       width: 100%;
-      height: 100%; /* 20% of the viewport height */
-      padding: 0rem;
-      padding-top: 7vh;
+      min-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
-    /* Style the checkered grid */
-    .checkered-grid {
+    .floor {
       width: 100%;
-      padding-top: 27vh;
-      height: 13vh; /* 20% of the viewport height */
+      height: 15vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
-    .checkered-grid img {
+    .floor img{
+      height: 100%;
       width: 100%;
-
+      max-width: 100%;
+      object-fit: fill;
     }
-
-    .stone{
+    .floating-tomato {
       z-index: 500;
+      float: left;
       position: absolute;
-      left: 150vh;
-      top: 75vh;
-      animation: float 6s ease-in-out infinite;
+      left: 1.5%;
+      top: 96.7%;
+      background-color: transparent;
+      border-color: transparent;
     }
 
+
+    /* keyframes  */
     @keyframes pulseFrame {
       0%, 100% {
         transform: scale(1);
@@ -450,116 +203,85 @@
       50% { transform: translateY(-20px); }
       100% { transform: translateY(0px); }
     }
-
-    @media (max-width: 768px) {
-      .title { font-size: 2.5rem; }
-      .subtitle { font-size: 1.2rem; }
-      .logo { width: 150px; height: 150px; }
-      .slider-container { width: 95%; }
+    /* media  */
+    @media (max-width: 600px) {
+      .floating-tomato {
+        display: none;
+      }
     }
   </style>
 </head>
+
 <body>
   <div class="glass">
-    <section class="hero">
-      <div class="image-container" id="sparkleContainer">
-        <img src="saturn_mid.png" alt="Circular Image" class="circular-image logo">
-        <div class="glow-frame"></div>
-        <!-- div class="stars"></div>
-        <div class="glow-frame cosmic-button twinkle"></div-->
+    <section>
+      <div class="column full child container">
+        <div class="child planet">
+          <div class="image-container" id="sparkleContainer">
+            <img src="logo.png" alt="Circular Image" class="circular-image bouncing">
+            <div class="glow-frame"></div>
+          </div>
+        </div>
+        <div class="child floor">
+          <button id="squash" class="floating-tomato">
+            <img id="tomato" src="tomb.png" style="width:2.3rem;">
+          </button>
+          <img src="tiles.png">
+        </div>
       </div>
-      <!--div class="logo" style="padding-left: 100vh; padding-top: 8vh;"-->
-      <div class="stone">
-        <button class="cosmic-button twinkle" style="border-radius: 45%; rotate: 1 1 0 55deg; padding: 2rem;">
-          <span>The pathchain</span>
-        </button>
-      </div>
-      <div class="checkered-grid">
-        <img src="ntiles.png">
-      </div>
-      <!--div class="button-wrapper">
-          <div class="stars"></div>
-          <button class="cosmic-button twinkle"><span>The Dream Operator's Garage</span></button>
-      </div-->
     </section>
-
-    <section id="pathchain-section" class="info-section pathchain-section">
-        <div class="container">
-            <h2 class="section-title">The Pathchain</h2>
-            <div class="info-card">
-                <img src="pathchain.png" alt="Pathchain Visualization">
-                <p>Pathchain is a tool to build path-shaped data structures that are chained one to another from the very moment the tool is initialized. The data behaves like a data tree where you can track the very origin of anything by tracking the origin file hashnames that created any hashname of any file in the chain.</p>
-                <a href="https://www.npmjs.com/package/pathchain" class="cta-button" target="_blank">Explore Library</a>
-                <a href="https://github.com/The-Dream-Operator-s-Garage/pathchain" class="cta-button" target="_blank">View Repository</a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-      <div class="footer-content">
-        <div class="footer-column">
-            <h3>beta.pathos.cloud</h3>
-            <p>Digital consciousness experiment</p>
-        </div>
-        <div class="footer-column">
-            <h3>pathchain</h3>
-            <p>Alien technology for human knowledge</p>
-        </div>
-        <div class="footer-column">
-            <h3>The Dream Operator's Garage</h3>
-            <p>Protecting human dreams through magical technology</p>
-        </div>
-      </div>
-    </footer>
+    <!--section>
+      Misterious section
+    </section-->
   </div>
 
-  <script>
-
-    // Smooth scroll and reveal functionality
-    document.querySelector('.cosmic-button').addEventListener('click', () => {
-        const pathchainSection = document.querySelector('.pathchain-section');
-        pathchainSection.style.opacity = '1';
-        document.getElementById('pathchain-section').scrollIntoView({ behavior: 'smooth' });
-    });
-
-    const container = document.getElementById('sparkleContainer');
+<script>
+  const container = document.getElementById('sparkleContainer');
     
-    function createSparkle() {
-      const sparkle = document.createElement('div');
-      sparkle.className = 'sparkle';
-      
-      // Calculate position on the circle's circumference
-      const angle = Math.random() * Math.PI * 2;
-      const radius = 150; // Half of container width
-      const startX = Math.cos(angle) * radius + radius;
-      const startY = Math.sin(angle) * radius + radius;
-      
-      // Calculate movement
-      const moveAngle = angle + (Math.random() - 0.5) * Math.PI / 2;
-      const distance = 20 + Math.random() * 20;
-      const tx = Math.cos(moveAngle) * distance;
-      const ty = Math.sin(moveAngle) * distance;
-      
-      sparkle.style.setProperty('--tx', `${tx}px`);
-      sparkle.style.setProperty('--ty', `${ty}px`);
-      
-      sparkle.style.left = `${startX}px`;
-      sparkle.style.top = `${startY}px`;
-      sparkle.style.animation = `sparkleFloat ${1 + Math.random()}s ease-out forwards`;
-      
-      container.appendChild(sparkle);
-      
-      setTimeout(() => sparkle.remove(), 1000);
-    }
+  function createSparkle() {
+    const sparkle = document.createElement('div');
+    sparkle.className = 'sparkle';
+    
+    // Calculate position on the circle's circumference
+    const angle = Math.random() * Math.PI * 2;
+    const radius = 150; // Half of container width
+    const startX = Math.cos(angle) * radius + radius;
+    const startY = Math.sin(angle) * radius + radius;
+    
+    // Calculate movement
+    const moveAngle = angle + (Math.random() - 0.5) * Math.PI / 2;
+    const distance = 20 + Math.random() * 20;
+    const tx = Math.cos(moveAngle) * distance;
+    const ty = Math.sin(moveAngle) * distance;
+    
+    sparkle.style.setProperty('--tx', `${tx}px`);
+    sparkle.style.setProperty('--ty', `${ty}px`);
+    
+    sparkle.style.left = `${startX}px`;
+    sparkle.style.top = `${startY}px`;
+    sparkle.style.animation = `sparkleFloat ${1 + Math.random()}s ease-out forwards`;
+    
+    container.appendChild(sparkle);
+    
+    setTimeout(() => sparkle.remove(), 1000);
+  }
 
-    function addRandomSparkles() {
-      const numSparkles = 1 + Math.floor(Math.random() * 2);
-      for (let i = 0; i < numSparkles; i++) {
-        createSparkle();
-      }
+  function addRandomSparkles() {
+    const numSparkles = 1 + Math.floor(Math.random() * 2);
+    for (let i = 0; i < numSparkles; i++) {
+      createSparkle();
     }
+  }
 
-    setInterval(addRandomSparkles, 100);
-  </script>
+  setInterval(addRandomSparkles, 100);
+
+  // Tomato squashing
+  const tomato = document.getElementById("tomato");
+  const squash = document.getElementById("squash");
+
+  squash.addEventListener("click", function() {
+    tomato.src = "toma.png";
+  });
+</script>
 </body>
 </html>
